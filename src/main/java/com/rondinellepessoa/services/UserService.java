@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rondinellepessoa.domain.User;
+import com.rondinellepessoa.dto.UserDTO;
 import com.rondinellepessoa.repository.UserRepository;
 import com.rondinellepessoa.services.exeception.ObjectNotFoundException;
 
 /**
- * Responsavel pelo acesso ao banco de dados MongoDB
+ * Responsavel pelo acesso ao banco de dados MongoDB 
  * @author Rondinelle
  *
  */
@@ -29,6 +30,14 @@ public class UserService {
 		if (user == null)
 			throw new ObjectNotFoundException("Objeto nao encontrado.");
 		return user;
+	}
+	
+	public User insert(User user) {
+		return repo.insert(user);
+	}
+	
+	public User fromDTO(UserDTO userDTO) {
+		return new User(userDTO.getId(), userDTO.getName(), userDTO.getEmail());
 	}
 	
 }
