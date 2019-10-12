@@ -1,12 +1,16 @@
 package com.rondinellepessoa.config;
 
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
+import com.rondinellepessoa.domain.Post;
 import com.rondinellepessoa.domain.User;
+import com.rondinellepessoa.repository.PostRepository;
 import com.rondinellepessoa.repository.UserRepository;
 
 /**
@@ -19,17 +23,29 @@ public class Instatiation implements CommandLineRunner{
 
 	@Autowired
 	private UserRepository userRepository;
+
+	@Autowired
+	private PostRepository postRepository;
+	
 	
 	@Override
 	public void run(String... args) throws Exception {
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+		sdf.setTimeZone(TimeZone.getTimeZone("GT"));
 
 		userRepository.deleteAll();
+		postRepository.deleteAll();
 		
 		User maria = new User(1, "Maria Brown", "maria@gmail.com");
 		User alex = new User(2, "Alex Green", "alex@gmail.com");
 		User bob = new User(3, "Bob Grey", "bob@gmail.com");
 		
+		Post post1 = new Post(1L, sdf.parse("21/09/1983"), "Partiu viagem", "Vou viajar para Portugal, abraços!", maria);
+		Post post2 = new Post(2L, sdf.parse("23/09/1983"), "Bom dia", "Acordei feliz hojes!", maria);
+		
 		userRepository.saveAll(Arrays.asList(maria, alex, bob));
+		postRepository.saveAll(Arrays.asList(post1, post2));
 	}
 
 }
