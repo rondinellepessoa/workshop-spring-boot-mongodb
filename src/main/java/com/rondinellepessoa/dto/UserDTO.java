@@ -7,7 +7,7 @@ import com.rondinellepessoa.domain.User;
 public class UserDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	private String id;
+	private Integer id;
 	private String name;
 	private String email;
 
@@ -17,11 +17,11 @@ public class UserDTO implements Serializable{
 		this.email = obj.getEmail();
 	}
 
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

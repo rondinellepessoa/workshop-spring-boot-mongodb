@@ -9,6 +9,11 @@ import org.springframework.context.annotation.Configuration;
 import com.rondinellepessoa.domain.User;
 import com.rondinellepessoa.repository.UserRepository;
 
+/**
+ * Classe responsavel por popular o banco de dados MongoDB
+ * @author Rondinelle
+ *
+ */
 @Configuration
 public class Instatiation implements CommandLineRunner{
 
@@ -20,9 +25,9 @@ public class Instatiation implements CommandLineRunner{
 
 		userRepository.deleteAll();
 		
-		User maria = new User(null, "Maria Brown", "maria@gmail.com");
-		User alex = new User(null, "Alex Green", "alex@gmail.com");
-		User bob = new User(null, "Bob Grey", "bob@gmail.com");
+		User maria = new User(1, "Maria Brown", "maria@gmail.com");
+		User alex = new User(2, "Alex Green", "alex@gmail.com");
+		User bob = new User(3, "Bob Grey", "bob@gmail.com");
 		
 		userRepository.saveAll(Arrays.asList(maria, alex, bob));
 	}
