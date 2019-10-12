@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.rondinellepessoa.domain.Post;
 import com.rondinellepessoa.domain.User;
+import com.rondinellepessoa.dto.AuthorDTO;
 import com.rondinellepessoa.repository.PostRepository;
 import com.rondinellepessoa.repository.UserRepository;
 
@@ -37,14 +38,15 @@ public class Instatiation implements CommandLineRunner{
 		userRepository.deleteAll();
 		postRepository.deleteAll();
 		
-		User maria = new User(1, "Maria Brown", "maria@gmail.com");
-		User alex = new User(2, "Alex Green", "alex@gmail.com");
-		User bob = new User(3, "Bob Grey", "bob@gmail.com");
-		
-		Post post1 = new Post(1L, sdf.parse("21/09/1983"), "Partiu viagem", "Vou viajar para Portugal, abraços!", maria);
-		Post post2 = new Post(2L, sdf.parse("23/09/1983"), "Bom dia", "Acordei feliz hojes!", maria);
+		User maria = new User(1L, "Maria Brown", "maria@gmail.com");
+		User alex = new User(2L, "Alex Green", "alex@gmail.com");
+		User bob = new User(3L, "Bob Grey", "bob@gmail.com");
 		
 		userRepository.saveAll(Arrays.asList(maria, alex, bob));
+		
+		Post post1 = new Post(1L, sdf.parse("21/09/1983"), "Partiu viagem", "Vou viajar para Portugal, abraços!", new AuthorDTO(maria));
+		Post post2 = new Post(2L, sdf.parse("23/09/1983"), "Bom dia", "Acordei feliz hojes!", new AuthorDTO(maria));
+		
 		postRepository.saveAll(Arrays.asList(post1, post2));
 	}
 

@@ -42,7 +42,7 @@ public class UserService {
 	}
 	
 	public User update(User user) {
-		User newUser = repo.findById(user.getId()).orElse(null);
+		User newUser = repo.findById(user.getId().intValue()).orElse(null);
 		update(newUser, user);
 		return repo.save(newUser);
 	}

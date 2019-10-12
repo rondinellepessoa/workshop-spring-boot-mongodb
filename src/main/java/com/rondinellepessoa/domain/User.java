@@ -16,7 +16,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private Integer id;
+	private Long id;
 	private String name;
 	private String email;
 
@@ -24,18 +24,18 @@ public class User implements Serializable {
 
 	}
 
-	public User(Integer id, String name, String email) {
+	public User(Long id, String name, String email) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.email = email;
 	}
 
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
